@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class AbstractController extends Controller
 {
 
+    protected $model;
+
     protected $template = "Dashboard";
     /**
      * Display a listing of the resource.

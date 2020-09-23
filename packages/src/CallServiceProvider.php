@@ -5,19 +5,14 @@
  * https://www.sigasmart.com.br
  */
 namespace Call;
-use Call\Facades\Call;
 use Call\Routes\RouteServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Router;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Session;
+use Call\Traits\BladeCall;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class CallServiceProvider extends BaseServiceProvider
 {
+    use BladeCall;
+
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
@@ -26,6 +21,7 @@ class CallServiceProvider extends BaseServiceProvider
 
     public function boot()
     {
+        $this->registerViews();
         $this->registerBladeDirective();
         $this->registerRequestMacro();
         $this->registerRouterMacro();
@@ -33,55 +29,8 @@ class CallServiceProvider extends BaseServiceProvider
         $this->shareValidationErrors();
     }
 
-    protected function registerBladeDirective()
-    {
-        Blade::directive('call', function () {
-            return '<div id="app" data-page="{{ json_encode($page) }}"></div>';
-        });
-    }
+    public function registerViews(){
 
-    protected function registerRequestMacro()
-    {
-        Request::macro('call', function () {
-            return boolval($this->header('X-Inertia'));
-        });
-    }
-
-    protected function registerRouterMacro()
-    {
-        Router::macro('call', function ($uri, $component, $props = []) {
-            return $this->match(['GET', 'HEAD'], $uri, '\Call\Controller')
-                ->defaults('component', $component)
-                ->defaults('props', $props);
-        });
-    }
-
-    protected function registerMiddleware()
-    {
-        $this->app[Kernel::class]->appendMiddlewareToGroup(
-            Config::get('call.middleware_group', 'web'),
-            Middleware::class
-        );
-    }
-
-    protected function shareValidationErrors()
-    {
-        if (Call::getShared('errors')) {
-            return;
-        }
-
-        Call::share('errors', function () {
-            if (! Session::has('errors')) {
-                return (object) [];
-            }
-
-            return (object) Collection::make(Session::get('errors')->getBags())->map(function ($bag) {
-                return (object) Collection::make($bag->messages())->map(function ($errors) {
-                    return $errors[0];
-                })->toArray();
-            })->pipe(function ($bags) {
-                return $bags->has('default') ? $bags->get('default') : $bags->toArray();
-            });
-        });
+          $this->loadViewsFrom(base_path('packages/resources/views'), 'call-views');
     }
 }
