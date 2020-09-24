@@ -88,10 +88,9 @@ trait HasComponents
     public function getComponents(): array
     {
         $components = [];
-
         if($this->components):
             foreach ($this->components as $component):
-                $components[]=$component->toArray();
+                $components[]=$component->setComponent($component, $this->model);
             endforeach;
         endif;
         return $components;

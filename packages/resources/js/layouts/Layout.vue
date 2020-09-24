@@ -12,13 +12,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" v-if="route().check('home')">
-                            <call-link class="nav-link" v-if="route().check('admin')" :href="route('admin')">Dashboard</call-link>
+                            <call-link class="nav-link":href="route('admin')">Dashboard</call-link>
                         </li>
-                        <li class="nav-item" v-if="route().check('home')">
-                            <call-link class="nav-link" v-if="route().check('admin.about')" :href="route('admin.about')">About</call-link>
+                        <li class="nav-item" v-if="route().check('admin.about')">
+                            <call-link class="nav-link" :href="route('admin.about')">About</call-link>
                         </li>
-                        <li class="nav-item" v-if="route().check('home')">
-                            <call-link class="nav-link" v-if="route().check('admin.contact')" :href="route('admin.contact')">Contact</call-link>
+                        <li class="nav-item" v-if="route().check('dmin.contact')">
+                            <call-link class="nav-link" :href="route('admin.contact')">Contact</call-link>
+                        </li>
+                        <li class="nav-item" v-if="route().check('admin.users.index')">
+                            <call-link class="nav-link" :href="route('admin.users.index')">Users</call-link>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->

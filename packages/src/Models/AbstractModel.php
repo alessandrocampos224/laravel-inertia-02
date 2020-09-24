@@ -67,4 +67,8 @@ abstract class AbstractModel extends Model
 
         return $this->belongsToMany(User::class);
     }
+
+    public function pivot($class, $table = null){
+        return $this->belongsToMany($class,$table);
+    }
 }

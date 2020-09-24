@@ -35,13 +35,10 @@ trait Attribute
         if($results->isNotEmpty()):
             foreach ($results->items() as $items):
                 foreach ($this->columns() as $col) {
-                    try
-                    {
-                        if(isset($items[$col->name])){
-                            $attribute[$col->name]['value'] = $items[$col->name];
-                        }
-                    }catch (\Exception $exception){
-
+                    $col->model($items);
+                    $attribute[$col->name]['value'] = $items[$col->name];
+                    if($col->hasComponents()){
+                        $attribute[$col->name]['components'] = $col->getComponents();
                     }
                 }
                 $attributes[] = $attribute;

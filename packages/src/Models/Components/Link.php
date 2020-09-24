@@ -63,6 +63,8 @@ class Link extends AbstractField
             $this->icon('icon-trash');
             $this->color('danger');
             return $this->href(function ($model) use ($route) {
+                if(!$model)
+                    return [];
                 return [
                     'name' => sprintf('admin.%s.destroy', $route),
                     'params' => $this->getUpdatesQueryParameters($model),
@@ -88,6 +90,8 @@ class Link extends AbstractField
             $this->icon('icon-edit');
             $this->color('primary');
             return $this->href(function ($model) use ($route) {
+                if(!$model)
+                    return [];
                 return [
                     'name' => sprintf('admin.%s.edit', $route),
                     'params' => $this->getUpdatesQueryParameters($model),
@@ -113,6 +117,8 @@ class Link extends AbstractField
             $this->icon('icon-eye');
             $this->color('warning');
             return $this->href(function ($model) use ($route) {
+                if(!$model)
+                    return [];
                 return [
                     'name' => sprintf('admin.%s.show', $route),
                     'params' => $this->getUpdatesQueryParameters($model),
@@ -139,7 +145,21 @@ class Link extends AbstractField
         ];
     }
 
-    protected function cellRenderFramework(){
 
+    /**
+     * @return array
+     */
+    public function setComponent($component, $model): array
+    {
+        if($component->attributes):
+            foreach ($component->attributes as $key => $attribute):
+                if(is_callable($attribute)){
+                    $component->attributes[$key] =  app()->call($attribute,[
+                        'model'=>$model
+                    ]);
+                }
+            endforeach;
+        endif;
+        return $component->toArray();
     }
 }

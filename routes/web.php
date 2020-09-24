@@ -21,6 +21,13 @@ Route::middleware('auth')->prefix('admin')->group(function (){
     Route::get('', [\App\Http\Controllers\AdminController::class,'index'])->name('admin');
     Route::get('/about', [\App\Http\Controllers\AboutController::class,'index'])->name('admin.about');
     Route::get('/contact', [\App\Http\Controllers\ContactController::class,'index'])->name('admin.contact');
+    Route::resource('users', \App\Http\Controllers\UserController::class)->names([
+        'index'=>'admin.users.index',
+        'create'=>'admin.users.create',
+        'edit'=>'admin.users.edit',
+        'show'=>'admin.users.show',
+        'destroy'=>'admin.users.destroy',
+    ]);
 });
 Route::prefix('admin')->group(function (){
     Auth::routes();

@@ -15,6 +15,8 @@ use Call\Models\Components\Traits\OptionsColumn;
 class AbstractField
 {
     use HiddenColumn, OptionsColumn, AttributesColumn, HasComponents;
+
+    protected $model;
     /**
      * @var
      */
@@ -29,6 +31,11 @@ class AbstractField
      * @var string
      */
     protected $name;
+
+    /**
+     * @var string
+     */
+    protected $value;
 
     /**
      * @var string
@@ -49,6 +56,28 @@ class AbstractField
      * @var bool
      */
     protected $html=false;
+
+    /**
+     * @param $model
+     * @return $this
+     */
+    public function model($model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function value($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
 
     /**
      * @param $text
