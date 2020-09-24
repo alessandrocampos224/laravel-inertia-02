@@ -17,9 +17,17 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('document')->nullable()->unique();
+            $table->string('ie')->nullable()->unique();
+            $table->string('rg')->nullable()->unique();
+            $table->text('phone')->nullable();
+            $table->text('cover')->nullable();
+            $table->enum('status', ['deleted','draft','published'])->default('published');
+            $table->text('description')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

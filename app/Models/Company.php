@@ -12,4 +12,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Company extends CompanyAlias
 {
     use HasFactory;
+
+    protected $keyType = "string";
+
+    public $incrementing = false;
 }

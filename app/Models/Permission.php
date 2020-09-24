@@ -13,6 +13,10 @@ class Permission extends AbstractPermission
 {
     use HasFactory;
 
+    protected $keyType = "string";
+
+    public $incrementing = false;
+
     public function columns()
     {
         return [];

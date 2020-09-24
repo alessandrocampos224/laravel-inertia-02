@@ -14,6 +14,9 @@ class Role extends AbstractRole
 {
     use HasFactory;
 
+    protected $keyType = "string";
+
+    public $incrementing = false;
     /**
      * @return AbstractField
      */

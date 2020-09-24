@@ -40,8 +40,6 @@ class AclServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton('acl', function ($app) {
-            $auth = $app->make('Illuminate\Contracts\Auth\Guard');
-
             return new \Call\Support\Acl\Acl();
         });
     }

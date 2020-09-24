@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Call\Models\AbstractModel;
 use Call\Models\Components\Column;
+use Call\Support\Acl\Concerns\HasRolesAndPermissions;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -23,7 +24,12 @@ class User extends AbstractModel implements
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable, HasRolesAndPermissions;
+
+
+    protected $keyType = "string";
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
