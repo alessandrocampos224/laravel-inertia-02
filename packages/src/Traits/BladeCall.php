@@ -15,6 +15,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 trait BladeCall
 {
@@ -22,7 +23,7 @@ trait BladeCall
     protected function registerBladeDirective()
     {
         Blade::directive('call', function () {
-            return view("call-views::app",compact('page'));
+           return '<div id="app" data-page="{{ json_encode($page) }}"></div>';
         });
     }
 
@@ -55,12 +56,10 @@ trait BladeCall
         if (Call::getShared('errors')) {
             return;
         }
-
         Call::share('errors', function () {
             if (! Session::has('errors')) {
                 return (object) [];
             }
-
             return (object) Collection::make(Session::get('errors')->getBags())->map(function ($bag) {
                 return (object) Collection::make($bag->messages())->map(function ($errors) {
                     return $errors[0];

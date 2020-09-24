@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+
 class ContactController extends AbstractController
 {
-    protected $template = "Contact";
+
+    protected $model = User::class;
 }

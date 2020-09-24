@@ -1,30 +1,39 @@
 <?php
-
+/**
+ * Created by Claudio Campos.
+ * User: callcocam@gmail.com, contato@sigasmart.com.br
+ * https://www.sigasmart.com.br
+ */
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\ControllerHelper;
 use Call\Facades\Call;
 use Illuminate\Http\Request;
 
 class AbstractController extends Controller
 {
 
+    use ControllerHelper;
+
     protected $model;
 
-    protected $template = "Dashboard";
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Call\Response
      */
     public function index(Request $request)
     {
-        return Call::render(sprintf("%s/Index",$this->template));
+        if($this->model){
+            $this->results = app($this->model)->component($request);
+        }
+        return Call::render(sprintf("%s/Index",$this->name()),$this->results);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Call\Response
      */
     public function create(Request $request)
     {
@@ -46,7 +55,7 @@ class AbstractController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Call\Response
      */
     public function show(Request $request, $id)
     {
@@ -57,7 +66,7 @@ class AbstractController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Call\Response
      */
     public function edit(Request $request, $id)
     {

@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Call\Models\AbstractModel;
+use Call\Models\Components\Column;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -53,4 +54,13 @@ class User extends AbstractModel implements
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function columns()
+    {
+       return [
+           Column::make('id'),
+           Column::make('name'),
+           Column::make('email'),
+       ];
+    }
 }
