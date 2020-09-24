@@ -91,9 +91,9 @@ trait HasComponents
 
         if($this->components):
             foreach ($this->components as $component):
-                dd($component->toArray());
+                $components[]=$component->toArray();
             endforeach;
         endif;
-        return $this->components;
+        return $components;
     }
 }
