@@ -24,7 +24,6 @@ class AclServiceProvider extends ServiceProvider
         $this->publishConfig();
         $this->publishMigrations();
         $this->loadMigrations();
-
         $this->registerGates();
         $this->registerBladeDirectives();
     }
@@ -43,7 +42,7 @@ class AclServiceProvider extends ServiceProvider
         $this->app->singleton('acl', function ($app) {
             $auth = $app->make('Illuminate\Contracts\Auth\Guard');
 
-            return new \App\Support\Acl\Acl($auth);
+            return new \Call\Support\Acl\Acl();
         });
     }
 

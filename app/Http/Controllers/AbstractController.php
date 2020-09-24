@@ -27,7 +27,7 @@ class AbstractController extends Controller
         if($this->model){
             $this->results = app($this->model)->component($request);
         }
-        dd($this->results);
+
         return Call::render(sprintf("%s/Index",$this->name()),$this->results);
     }
 
