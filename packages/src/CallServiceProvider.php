@@ -29,35 +29,11 @@ class CallServiceProvider extends BaseServiceProvider
         $this->registerRouterMacro();
         $this->registerMiddleware();
         $this->shareValidationErrors();
-        $this->loadMigrations();
-        $this->publishMigrations();
     }
 
     public function registerViews(){
 
           $this->loadViewsFrom(base_path('packages/resources/views'), 'call-views');
-    }
-
-    /**
-     * Publish the migration files.
-     *
-     * @return void
-     */
-    protected function publishMigrations()
-    {
-        $this->publishes([
-            base_path('/packages/databases/migrations/') => database_path('migrations'),
-        ], 'call-migrations');
-    }
-
-    /**
-     * Load our migration files.
-     *
-     * @return void
-     */
-    protected function loadMigrations()
-    {
-        $this->loadMigrationsFrom( base_path('/packages/databases/migrations'));
     }
 
 }

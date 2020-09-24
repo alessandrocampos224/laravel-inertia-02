@@ -35,7 +35,7 @@ class TenantManager
     public function hasTenant()
     {
 
-        return $this->tenant;
+        return $this->tenant->first();
     }
 
 

@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Example Component About</div>
+                        <div class="card-header">Example Component</div>
                         <div class="card-body">
                             I'm an example component.
                         </div>
@@ -16,9 +16,9 @@
 </template>
 
 <script>
-    import Layout from "../../layouts/Layout";
+    import Layout from "@/layouts/Layout";
     export default {
-        name: "Index",
+        name: "Show",
         components: {Layout}
     }
 </script>

@@ -75,7 +75,7 @@ trait Select
 
         } else {
 
-            $sortField = $this->sortField;
+            $sortField = sprintf('%s.%s',$this->getTable(),$this->sortField);
 
         }
 

@@ -8,6 +8,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\ControllerHelper;
 use Call\Facades\Call;
+use Call\Facades\Tenant;
+use Call\Tenant\TenantManager;
 use Illuminate\Http\Request;
 
 class AbstractController extends Controller
@@ -15,7 +17,14 @@ class AbstractController extends Controller
 
     use ControllerHelper;
 
+    protected $tenant;
+
     protected $model;
+
+    public function __construct()
+    {
+        $this->tenant = Tenant::hasTenant();
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,11 +33,11 @@ class AbstractController extends Controller
      */
     public function index(Request $request)
     {
+
         if($this->model){
-            $this->results = app($this->model)->component($request);
+            $this->results = $this->tenant->pivot($this->model)->component($request);
         }
-        dd($this->results);
-        return Call::render(sprintf("%s/Index",$this->name()),$this->results);
+        return Call::render($this->list,$this->results);
     }
 
     /**
@@ -38,7 +47,7 @@ class AbstractController extends Controller
      */
     public function create(Request $request)
     {
-        return Call::render(sprintf("%s/Create",$this->template));
+        return Call::render($this->create);
     }
 
     /**
@@ -60,7 +69,7 @@ class AbstractController extends Controller
      */
     public function show(Request $request, $id)
     {
-        return Call::render(sprintf("%s/Show",$this->template));
+        return Call::render($this->show);
     }
 
     /**
@@ -71,7 +80,7 @@ class AbstractController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return Call::render(sprintf("%s/Index",$this->template));
+        return Call::render($this->edit);
     }
 
     /**

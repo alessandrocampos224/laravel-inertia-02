@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.17.3",
         "boxicons": "^2.0.5",
         "nprogress": "^0.2.0",
         "vuesax": "^4.0.1-alpha.24"

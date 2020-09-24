@@ -16,9 +16,9 @@
 </template>
 
 <script>
-    import Layout from "../../layouts/Layout";
+    import Layout from "@/layouts/Layout";
     export default {
-        name: "Index",
+        name: "Edit",
         components: {Layout}
     }
 </script>
