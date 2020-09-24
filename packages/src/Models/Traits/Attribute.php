@@ -35,7 +35,14 @@ trait Attribute
         if($results->isNotEmpty()):
             foreach ($results->items() as $items):
                 foreach ($this->columns() as $col) {
-                    $attribute[$col->name]['value'] = $items[$col->name];
+                    try
+                    {
+                        if(isset($items[$col->name])){
+                            $attribute[$col->name]['value'] = $items[$col->name];
+                        }
+                    }catch (\Exception $exception){
+
+                    }
                 }
                 $attributes[] = $attribute;
             endforeach;

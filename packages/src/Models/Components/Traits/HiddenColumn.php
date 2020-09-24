@@ -15,12 +15,13 @@ trait HiddenColumn
         'show'                   =>false,
         'create'                 =>false,
         'edit'                   =>false,
+        'destroy'                =>false,
     ];
 
     /**
      * @var string
      */
-    public function list($hidden = true): self
+    public function hidden_list($hidden = true): self
     {
         return $this->hidden('list', $hidden);
     }
@@ -28,7 +29,7 @@ trait HiddenColumn
     /**
      * @var string
      */
-    public function show($hidden = true): self
+    public function hidden_show($hidden = true): self
     {
         return $this->hidden('show', $hidden);
     }
@@ -36,7 +37,7 @@ trait HiddenColumn
     /**
      * @var string
      */
-    public function create($hidden = true): self
+    public function hidden_create($hidden = true): self
     {
         return $this->hidden('create', $hidden);
     }
@@ -44,9 +45,17 @@ trait HiddenColumn
     /**
      * @var string
      */
-    public function edit($hidden = true): self
+    public function hidden_edit($hidden = true): self
     {
         return $this->hidden('edit', $hidden);
+    }
+
+    /**
+     * @var string
+     */
+    public function hidden_destroy($hidden = true): self
+    {
+        return $this->hidden('destroy', $hidden);
     }
     /**
      * @param $key
@@ -66,6 +75,6 @@ trait HiddenColumn
      */
     public function getHidden(): array
     {
-        return $this->hidden;
+        return is_array($this->hidden) ? $this->hidden : [];
     }
 }

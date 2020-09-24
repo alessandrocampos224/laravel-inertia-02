@@ -41,8 +41,10 @@ class Column extends AbstractField
             'hidden'                 =>$this->getHidden(),
             'html'                   =>$this->html,
             'options'                =>$this->options,
+            'components'             =>$this->getComponents(),
             'formRenderFramework'    =>sprintf("FormRenderer%s", Str::title($this->type)),
             'cellRenderFramework'    =>sprintf("CellRenderer%s", Str::title($this->type)),
+            'attributes'             =>$this->getAttributes(),
         ];
     }
 }

@@ -61,6 +61,7 @@ class User extends AbstractModel implements
            Column::make('id'),
            Column::make('name'),
            Column::make('email'),
+           Column::make('Action')->actions('users'),
        ];
     }
 }

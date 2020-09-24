@@ -4,14 +4,10 @@
  * User: callcocam@gmail.com, contato@sigasmart.com.br
  * https://www.sigasmart.com.br
  */
-namespace App\Models;
+namespace Call\Models;
 
-use Call\Models\Tenant as TenantAlias;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-class Tenant extends TenantAlias
+class Company extends AbstractModel
 {
-    use HasFactory;
 
     public function columns()
     {
