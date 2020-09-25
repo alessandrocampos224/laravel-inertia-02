@@ -159,6 +159,18 @@ class AbstractField
         return $this->setAttribute('icon', $icon);
     }
 
+    /**
+     * @param $icon
+     *
+     * @return $this
+     */
+    public function sortable(): self
+    {
+        $this->sortable = true;
+
+        return $this;
+    }
+
 
     public function __get($name)
     {

@@ -1,6 +1,16 @@
 {
     "/_dist/admin/js/app.js": "/_dist/admin/js/app.js",
     "/_dist/admin/css/app.css": "/_dist/admin/css/app.css",
+    "/_dist/admin/css/bootstrap.css": "/_dist/admin/css/bootstrap.css",
+    "/_dist/admin/css/bootstrap-extended.css": "/_dist/admin/css/bootstrap-extended.css",
+    "/_dist/admin/css/colors.css": "/_dist/admin/css/colors.css",
+    "/_dist/admin/css/components.css": "/_dist/admin/css/components.css",
+    "/_dist/admin/css/core/menu/menu-types/vertical-menu.css": "/_dist/admin/css/core/menu/menu-types/vertical-menu.css",
+    "/_dist/admin/css/core/colors/palette-gradient.css": "/_dist/admin/css/core/colors/palette-gradient.css",
+    "/_dist/admin/css/themes/dark-layout.css": "/_dist/admin/css/themes/dark-layout.css",
+    "/_dist/admin/css/themes/semi-dark-layout.css": "/_dist/admin/css/themes/semi-dark-layout.css",
+    "/_dist/admin/css/pages/authentication/authentication.css": "/_dist/admin/css/pages/authentication/authentication.css",
+    "/_dist/admin/css/custom-rtl.css": "/_dist/admin/css/custom-rtl.css",
     "/css/app.css": "/css/app.css",
     "/js/app.js": "/js/app.js"
 }

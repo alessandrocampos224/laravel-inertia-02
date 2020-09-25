@@ -1,4 +1,4 @@
-import { shouldIntercept } from './../call'
+import { Call, shouldIntercept } from './../../../call'
 
 export default {
     functional: true,

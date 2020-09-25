@@ -37,6 +37,12 @@ export default {
         }
     },
     render(h, { props, data, children }) {
+        if(!data.attrs.class){
+            data.attrs.class="btn btn-link";
+        }
+        if(route().check(props.href)){
+            props.href=route(props.href);
+        }
         return h('a', {
             ...data,
             attrs: {

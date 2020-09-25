@@ -65,7 +65,7 @@ class User extends AbstractModel implements
     {
        return [
            Column::make('id'),
-           Column::make('name'),
+           Column::make('name')->sortable(),
            Column::make('email'),
            Column::make('Action')->actions('users'),
        ];

@@ -50,7 +50,63 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return Call::render("Auth/Register");
+        return Call::render("Auth/Register") ->with('form',[
+            'name'=>request()->get('name'),
+            'email'=>request()->get('email'),
+            'password'=>'',
+            'password_confirmation'=>'',
+        ])->with('column',[
+            'name'=>[
+                'name' => 'name',
+                'label' => 'Full Name',
+                'attributes' =>[
+                    'type'=> 'text',
+                    'id'=>'name',
+                    'class'=>'form-control',
+                    'placeholder'=>'Full Name',
+                ]
+            ],
+            'email'=>[
+                'name' => 'email',
+                'label' => 'E-Mail Address',
+                'attributes' =>[
+                    'type'=> 'email',
+                    'id'=>'name',
+                    'class'=>'form-control',
+                    'placeholder'=>'E-Mail Address',
+                ]
+            ],
+            'password'=>[
+                'name' => 'password',
+                'label' => 'Password',
+                'attributes' =>[
+                    'type'=> 'password',
+                    'id'=>'password',
+                    'class'=>'form-control',
+                    'placeholder'=>'Password',
+                ]
+            ],
+            'password_confirmation'=>[
+                'name' => 'password_confirmation',
+                'label' => 'Password Confirmation',
+                'attributes' =>[
+                    'type'=> 'password',
+                    'id'=>'password_confirmation',
+                    'class'=>'form-control',
+                    'placeholder'=>'Password Confirmation',
+                ]
+            ],
+            'remember'=>[
+                'name' => 'remember',
+                'label' => 'Remember me',
+                'yes'=>'yes',
+                'no'=>'no',
+                'attributes' =>[
+                    'type'=> 'checkbox',
+                    'id'=>'remember',
+                ]
+            ]
+        ]);
     }
     /**
      * Get a validator for an incoming registration request.

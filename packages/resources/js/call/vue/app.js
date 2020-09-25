@@ -1,5 +1,8 @@
 import { Call } from './../../call'
 import Link from './link'
+import Input from './plugins/input'
+import Button from './plugins/button'
+import Text from './plugins/text'
 import Remember from './remember'
 
 let app = {}
@@ -68,5 +71,8 @@ export default {
         Object.defineProperty(Vue.prototype, '$page', { get: () => app.props })
         Vue.mixin(Remember)
         Vue.component('CallLink', Link)
+        Vue.component('CallInput', Input)
+        Vue.component('CallButton', Button)
+        Vue.component('CallText', Text)
     },
 }

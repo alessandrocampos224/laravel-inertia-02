@@ -88,6 +88,6 @@ class Response implements Responsable
                 'X-Call' => 'true',
             ]);
         }
-        return ResponseFactory::view($this->rootView, $this->viewData + ['page' => $page]);
+        return ResponseFactory::view($this->rootView, array_merge($this->viewData ,['page' => $page]));
     }
 }

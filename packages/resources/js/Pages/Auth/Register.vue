@@ -1,68 +1,47 @@
 <template>
-    <Full title="Welcome">
-        <div class="card-header">{{ __('Register') }}</div>
-
-        <div class="card-body">
-            <form @submit.prevent="submit">
-                <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                    <div class="col-md-6">
-                        <input id="name" type="text" v-model="form.name" class="form-control" :class="$page.errors.name ?'is-invalid':''">
-                        <span class="invalid-feedback" role="alert" v-if="$page.errors.name">
-                            <strong>{{ $page.errors.name }}</strong>
-                        </span>
+    <Full title="Register">
+        <div class="row m-0">
+            <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
+                <img src="/_dist/admin/images/pages/register.jpg" alt="branding logo">
+            </div>
+            <div class="col-lg-6 col-12 p-0">
+                <div class="card rounded-0 mb-0 px-2">
+                    <div class="card-header pb-1">
+                        <div class="card-title">
+                            <h4 class="mb-0">{{ __('Create Account')}}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                    <div class="col-md-6">
-                        <input id="email" type="email" v-model="form.email" class="form-control"  :class="$page.errors.email ?'is-invalid':''">
-                        <span class="invalid-feedback" role="alert" v-if="$page.errors.email">
-                            <strong>{{ $page.errors.email }}</strong>
-                        </span>
+                    <p class="px-2">{{ __('Fill the below form to create a new account.')}}</p>
+                    <div class="card-content">
+                        <div class="card-body pt-0">
+                            <form @submit.prevent="submit">
+                                <FormRendererText :column="column.name" :form="form" :errors="$page.errors.name"/>
+                                <FormRendererText :column="column.email" :form="form" :errors="$page.errors.email"/>
+                                <FormRendererText :column="column.password" :form="form" :errors="$page.errors.password"/>
+                                <FormRendererText :column="column.password_confirmation" :form="form" :errors="$page.errors.password_confirmation"/>
+                                <div class="form-group d-flex justify-content-between align-items-center">
+                                    <div class="text-left">
+                                        <FormRendererCheckBox :column="column.remember" :form="form" :errors="$page.errors.remember" />
+                                    </div>
+                                </div>
+                                <call-link href="login"  class="btn btn-outline-primary float-left btn-inline">{{ __('Login') }}</call-link>
+                                <button type="submit" class="btn btn-primary float-right btn-inline">{{ __('Register') }}</button>
+                            </form>
+                        </div>
                     </div>
+                    <SocialMediaComponent />
                 </div>
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                    <div class="col-md-6">
-                        <input id="password" type="password" v-model="form.password" class="form-control"  :class="$page.errors.password ?'is-invalid':''">
-                        <span class="invalid-feedback" role="alert" v-if="$page.errors.password">
-                            <strong>{{ $page.errors.password }}</strong>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password_confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                    <div class="col-md-6">
-                        <input id="password_confirm" type="password" v-model="form.password_confirmation" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </Full>
 </template>
 <script>
-    import Full from "../../layouts/Full";
+    import Full from "@/layouts/Full";
+    import SocialMediaComponent from "@/components/SocialMediaComponent";
     export default {
         name: "Register",
-        components: {Full},
-        data() {
-            return {
-                form: {
-                    name: null,
-                    email: null,
-                    password: null,
-                    password_confirmation: false,
-                },
-            }
-        },
+        components: {Full, SocialMediaComponent},
+        props:['form','column'],
         methods: {
             submit() {
                 this.$call.post(this.$route('register'), this.form)

@@ -32,7 +32,20 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return Call::render("Auth/Passwords/Email");
+        return Call::render("Auth/Passwords/Email")->with('form',[
+            'email'=>request()->get('email')
+        ])->with('column',[
+            'email'=>[
+                'name' => 'email',
+                'label' => 'E-Mail Address',
+                'attributes' =>[
+                    'type'=> 'text',
+                    'id'=>'name',
+                    'class'=>'form-control',
+                    'placeholder'=>'E-Mail Address',
+                ]
+            ]
+        ]);
     }
 
     /**

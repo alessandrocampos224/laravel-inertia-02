@@ -14,12 +14,27 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('_dist/admin/css/app.css') }}" rel="stylesheet">
+    {{-- Theme Styles --}}
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/bootstrap-extended.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/colors.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/components.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/themes/dark-layout.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/themes/semi-dark-layout.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/core/menu/menu-types/vertical-menu.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/core/colors/palette-gradient.css')) }}">
+
+    {{-- Layout Styles works when don't use customizer --}}
+
+    {{-- Page Styles --}}
+    {{-- Laravel Style --}}
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/custom-rtl.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('_dist/admin/css/pages/authentication/authentication.css')) }}">
 </head>
-<body>
+<body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page">
     @call
 </body>
 </html>

@@ -49,7 +49,42 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return Call::render("Auth/Login");
+        return Call::render("Auth/Login")->with('form',[
+            'email'=>request()->get('email'),
+            'password'=>'',
+            'remember'=>'no',
+        ])->with('column',[
+            'email'=>[
+                'name' => 'email',
+                'label' => 'E-Mail Address',
+                'attributes' =>[
+                    'type'=> 'text',
+                    'id'=>'name',
+                    'class'=>'form-control',
+                    'placeholder'=>'E-Mail Address',
+                ]
+            ],
+            'password'=>[
+                'name' => 'password',
+                'label' => 'Password',
+                'attributes' =>[
+                    'type'=> 'password',
+                    'id'=>'password',
+                    'class'=>'form-control',
+                    'placeholder'=>'Password',
+                ]
+            ],
+            'remember'=>[
+                'name' => 'remember',
+                'label' => 'Remember me',
+                'yes'=>'yes',
+                'no'=>'no',
+                'attributes' =>[
+                    'type'=> 'checkbox',
+                    'id'=>'remember',
+                ]
+            ]
+        ]);
     }
 
     public function redirectTo(){

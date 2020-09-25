@@ -1,57 +1,49 @@
 <template>
-    <Full title="Welcome">
-        <div class="card-header">{{ __('Login') }}</div>
-
-        <div class="card-body">
-            <form @submit.prevent="submit">
-                <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                    <div class="col-md-6">
-                        <input id="email" type="email" v-model="form.email" class="form-control"  :class="$page.errors.email ?'is-invalid':''">
-                        <span class="invalid-feedback" role="alert" v-if="$page.errors.email">
-                            <strong>{{ $page.errors.email }}</strong>
-                        </span>
+    <Full title="Login">
+        <div class="row m-0">
+            <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
+                <img src="/_dist/admin/images/pages/login.png" alt="branding logo">
+            </div>
+            <div class="col-lg-6 col-12 p-0">
+                <div class="card rounded-0 mb-0 px-2">
+                    <div class="card-header pb-1">
+                        <div class="card-title">
+                            <h4 class="mb-0">{{ __('Login')}}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                    <div class="col-md-6">
-                        <input id="password" type="password" v-model="form.password" class="form-control"  :class="$page.errors.password ?'is-invalid':''">
-                        <span class="invalid-feedback" role="alert" v-if="$page.errors.password">
-                            <strong>{{ $page.errors.password }}</strong>
-                        </span>
+                    <p class="px-2">{{ __('Welcome back, please login to your account.')}}</p>
+                    <div class="card-content">
+                        <div class="card-body pt-1">
+                            <form @submit.prevent="submit">
+                                <FormRendererText :column="column.email" :form="form" :errors="$page.errors.email"/>
+                                <FormRendererText :column="column.password" :form="form" :errors="$page.errors.password"/>
+                                <div class="form-group d-flex justify-content-between align-items-center">
+                                    <div class="text-left">
+                                        <FormRendererCheckBox :column="column.remember" :form="form" :errors="$page.errors.remember" />
+                                    </div>
+                                    <div class="text-right">
+                                        <call-link href="password.request">{{ __('Forgot Password?') }}</call-link>
+                                    </div>
+                                </div>
+                                <call-link href="register"  class="btn btn-outline-primary float-left btn-inline">{{ __('Register') }}</call-link>
+                                <button type="submit" class="btn btn-primary float-right btn-inline">{{ __('Login') }}</button>
+                            </form>
+                        </div>
                     </div>
+                    <SocialMediaComponent />
                 </div>
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
-                        </button>
-
-                        <call-link v-if="route().check('password.request')" class="btn btn-link" :href="route('password.request')">
-                            {{ __('Forgot Your Password?') }}
-                        </call-link>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </Full>
 </template>
 
 <script>
-    import Full from "../../layouts/Full";
+    import Full from "@/layouts/Full";
+    import SocialMediaComponent from "@/components/SocialMediaComponent";
     export default {
         name: "Login",
-        components: {Full},
-        data() {
-            return {
-                form: {
-                    email: null,
-                    password: null,
-                    remember: false,
-                },
-            }
-        },
+        components: {Full, SocialMediaComponent},
+        props:['form','column'],
         methods: {
             submit() {
                 this.$call.post(this.$route('login'), this.form)
@@ -62,4 +54,3 @@
         },
     }
 </script>
-

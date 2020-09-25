@@ -51,8 +51,40 @@ class ResetPasswordController extends Controller
                 'email'=>$request->email,
                 'password'=>'',
                 'password_confirmation'=>'',
+            ])->with('column',[
+                'email'=>[
+                    'name' => 'email',
+                    'label' => 'E-Mail Address',
+                    'attributes' =>[
+                        'type'=> 'text',
+                        'id'=>'name',
+                        'class'=>'form-control',
+                        'placeholder'=>'E-Mail Address',
+                    ]
+                ],
+                'password'=>[
+                    'name' => 'password',
+                    'label' => 'Password',
+                    'attributes' =>[
+                        'type'=> 'password',
+                        'id'=>'password',
+                        'class'=>'form-control',
+                        'placeholder'=>'Password',
+                    ]
+                ],
+                'password_confirmation'=>[
+                    'name' => 'password_confirmation',
+                    'label' => 'Password Confirmation',
+                    'attributes' =>[
+                        'type'=> 'password',
+                        'id'=>'password_confirmation',
+                        'class'=>'form-control',
+                        'placeholder'=>'Password Confirmation',
+                    ]
+                ]
             ]);
     }
+
     /**
      * Get the response for a successful password reset.
      *

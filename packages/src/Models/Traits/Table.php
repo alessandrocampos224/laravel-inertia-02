@@ -11,18 +11,18 @@ trait Table
 {
     protected $actions=[];
     protected $options = [];
-    protected $stripe       = true;     //	Boolean		Add a stripes effect.	false
-    protected $hoverFlat    = true;     //	Boolean		Change effect hover and flat.	false
-    protected $maxHeight    = false;     //	px		Change the high maximum of the table, generating the scroll.	false
-    protected $multiple     = true;    //	Boolean		Determines if multiple items can be selected.	false
-    protected $notSpacer    = true;     //	Boolean		Eliminates the space between each tr.	false
-    protected $search       = true;     //	Boolean		Determine if the filtering functionality through an input is active.	false
-    protected $pagination   = false;     //	Boolean		Determine if the page is active so that only a certain number of items can be displayed.	false
-    protected $maxItems     = 12;      //	Number		Change the maximum number of items that can be displayed when the page is active.	5
-    protected $state        = true;     // (vs-tr)	Boolean		Determine the state of the element with a color.
-    protected $sortKey      = "name";   // (vs-th)	String		Determine the value to be raffled and if this activates that functionality.
-    protected $noDataText   ='Empty table';        //	String		Change the text of the notification when there is no data in the table.
-    protected $sst          = true;     // (server-site table)	Boolean		It does not execute the functions of the client side like search, pagination change or sort, now the methods are executed (search, change-page and sort) to be used when making the call to the api of the server.	fals
+    protected $striped      = true;     //	Boolean		Add a stripes effect.	false
+    protected $hover        = true;     //	Boolean		Change effect hover and flat.	false
+    protected $bordered     = false;     //	px		Change the high maximum of the table, generating the scroll.	false
+    protected $borderless   = true;    //	Boolean		Determines if multiple items can be selected.	false
+    protected $outlined     = true;     //	Boolean		Eliminates the space between each tr.	false
+    protected $small        = true;     //	Boolean		Determine if the filtering functionality through an input is active.	false
+    protected $dark         = false;     //	Boolean		Determine if the page is active so that only a certain number of items can be displayed.	false
+    protected $fixed        = false;      //	Number		Change the maximum number of items that can be displayed when the page is active.	5
+    protected $footClone    = true;     // (vs-tr)	Boolean		Determine the state of the element with a color.
+    protected $headVariant  = null;   // (vs-th)	String		Determine the value to be raffled and if this activates that functionality.
+    protected $tableVariant = '';   // (vs-th)	String		Determine the value to be raffled and if this activates that functionality.
+    protected $noCollapse   = false;        //	String		Change the text of the notification when there is no data in the table.
 
 
     /**
@@ -31,18 +31,18 @@ trait Table
     protected function getOptionsAttributes(){
 
         $this->options = [
-            'stripe'       => $this->stripe,
-            'hoverFlat'    => $this->hoverFlat,
-            'maxHeight'    => $this->maxHeight,
-            'multiple'     => $this->multiple,
-            'notSpacer'    => $this->notSpacer,
-            'search'       => $this->search,
-            'pagination'   => $this->pagination,
-            'maxItems'     => $this->maxItems,
-            'state'        => $this->state,
-            'sortKey'      => $this->sortKey,
-            'noDataText'   => $this->noDataText,
-            'sst'          => $this->sst
+            'striped'               => $this->striped,
+            'bordered'              => $this->bordered,
+            'borderless'            => $this->borderless,
+            'outlined'              => $this->outlined,
+            'small'                 => $this->small,
+            'hover'                 => $this->hover,
+            'dark'                  => $this->dark,
+            'fixed'                 => $this->fixed,
+            'footClone'             => $this->footClone,
+            'headVariant'           => $this->headVariant,
+            'tableVariant'          => $this->tableVariant,
+            'noCollapse'            => $this->noCollapse
         ];
 
         return $this;

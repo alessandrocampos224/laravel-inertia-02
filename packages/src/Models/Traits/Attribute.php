@@ -30,15 +30,17 @@ trait Attribute
      */
     protected function getAttrResultByAttribute($results)
     {
-        $attribute =  $this->columns;
+        $attribute = [];
         $attributes = [];
         if($results->isNotEmpty()):
             foreach ($results->items() as $items):
                 foreach ($this->columns() as $col) {
                     $col->model($items);
-                    $attribute[$col->name]['value'] = $items[$col->name];
                     if($col->hasComponents()){
-                        $attribute[$col->name]['components'] = $col->getComponents();
+                        $attribute[$col->name] = $col->getComponents();
+                    }
+                    else{
+                        $attribute[$col->name] = $items[$col->name];
                     }
                 }
                 $attributes[] = $attribute;
