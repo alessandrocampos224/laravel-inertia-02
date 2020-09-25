@@ -15,7 +15,11 @@ trait WithParameters
 
     public function endpoint($model){
 
-        return $model->getTable();
+        if($model)
+            return $model->getTable();
+
+        return $this->getTable();
+
     }
 
     public function refresh($model=null,$route=null){

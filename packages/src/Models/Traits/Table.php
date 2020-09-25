@@ -31,6 +31,8 @@ trait Table
     protected function getOptionsAttributes(){
 
         $this->options = [
+            'redirect_url'          => $this->refresh(null),
+            'create_url'            => $this->create_url(null),
             'striped'               => $this->striped,
             'bordered'              => $this->bordered,
             'borderless'            => $this->borderless,
