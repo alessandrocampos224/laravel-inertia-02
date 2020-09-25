@@ -16,8 +16,8 @@
                                                 <component :is="currentTabComponent(item.formRenderFramework)"  :column="item" :form="form" :errors="$page.errors[item.name]" :key="index"></component>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1">{{ __('Submit') }}</button>
+                                                <call-link :href="options.redirect_url" class="btn btn-outline-warning mr-1 mb-1">{{ __('Reset') }}</call-link>
                                             </div>
                                         </div>
                                     </div>
@@ -30,13 +30,12 @@
         </div>
     </layout>
 </template>
-
 <script>
     import Layout from "@/layouts/Layout";
     export default {
         name: "Edit",
         components: {Layout},
-        props:['form','column'],
+        props:['form','column','options'],
         methods: {
             submit() {
                 this.$call.post(this.$route('login'), this.form)

@@ -6,26 +6,48 @@
                     <div class="card">
                         <div class="card-header">Example Component</div>
                         <div class="card-body">
-                            <b-table :fields="columns" :items="data" show-empty  :busy="isBusy">
-                                <template v-slot:empty="scope">
-                                    <h4>{{ scope.emptyText }}</h4>
-                                </template>
-                                <template v-slot:emptyfiltered="scope">
-                                    <h4>{{ scope.emptyFilteredText }}</h4>
-                                </template>
-                                <template v-slot:table-busy>
-                                    <div class="text-center text-danger my-2">
-                                        <b-spinner class="align-middle"></b-spinner>
-                                        <strong>Loading...</strong>
-                                    </div>
-                                </template>
-                                <template v-slot:cell(action)="data">
-                                    <!-- `data.value` is the value after formatted by the Formatter -->
-                                    <template v-for="(item, index) in data.item.action">
-                                        <call-link :href="route(item.attributes.href.name,item.attributes.href.params)" :key="index"> {{ item.attributes.text }}</call-link>
-                                    </template>
-                                </template>
-                            </b-table>
+                            <b-table-simple
+                                hover
+                                small
+                                responsive>
+                                <b-thead head-variant="dark">
+                                    <b-tr>
+                                        <template v-for="(col, i) in columns">
+                                            <template v-if="!col.hidden.list">
+                                                <template v-if="col.sortable">
+                                                    <b-th :key="i">{{ col.text }}</b-th>
+                                                </template>
+                                                <template v-else>
+                                                    <b-th :key="i">{{ col.text }}</b-th>
+                                                </template>
+                                            </template>
+                                        </template>
+                                    </b-tr>
+                                </b-thead>
+                                <b-tbody>
+                                    <b-tr v-for="(item, i) in data" :key="i">
+                                        <template v-for="(col, index) in columns">
+                                            <template v-if="!col.hidden.list">
+                                                <b-th :key="index">
+                                                    <component :is="currentTabComponent(col.cellRenderFramework)"  :column="col" :item="item"></component>
+                                                </b-th>
+                                            </template>
+                                        </template>
+                                    </b-tr>
+                                </b-tbody>
+                                <b-tfoot>
+                                    <b-tr>
+                                        <b-td colspan="4" variant="secondary" class="text-center">
+                                           <VsxPagination :source="source" :options="options"/>
+                                        </b-td>
+                                    </b-tr>
+                                    <b-tr>
+                                        <b-td colspan="4" variant="secondary" class="text-right">
+                                            Total Rows: <b>{{ source.total}}</b>
+                                        </b-td>
+                                    </b-tr>
+                                </b-tfoot>
+                            </b-table-simple>
                         </div>
                     </div>
                 </div>
