@@ -13,7 +13,7 @@
                                     <div class="form-body">
                                         <div class="row" v-if="column">
                                             <div class="col-12" v-for="(item, index) in column">
-                                                <component :is="currentTabComponent(column.formRenderFramework)"  :column="item" :form="form" :errors="$page.errors[item.name]" :key="index"></component>
+                                                <component :is="currentTabComponent(item.formRenderFramework)"  :column="item" :form="form" :errors="$page.errors[item.name]" :key="index"></component>
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
