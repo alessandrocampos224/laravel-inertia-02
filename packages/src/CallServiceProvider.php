@@ -7,6 +7,7 @@
 namespace Call;
 use Call\Routes\RouteServiceProvider;
 use Call\Support\Acl\AclServiceProvider;
+use Call\Tenant\TenantServiceProvider;
 use Call\Traits\BladeCall;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -16,6 +17,7 @@ class CallServiceProvider extends BaseServiceProvider
 
     public function register()
     {
+        $this->app->register(TenantServiceProvider::class);
         $this->app->register(AclServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->singleton(ResponseFactory::class);
