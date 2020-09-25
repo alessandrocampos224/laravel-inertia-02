@@ -2,11 +2,27 @@
     <layout title="Welcome">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Example Component</div>
-                        <div class="card-body">
-                            I'm an example component.
+                        <div class="card-header">
+                            <h4 class="card-title">Form With Label Placeholder with Icons</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="form-body">
+                                        <div class="row" v-if="column">
+                                            <div class="col-12" v-for="(item, index) in column">
+                                                <component :is="currentTabComponent(column.formRenderFramework)"  :column="item" :form="form" :errors="$page.errors[item.name]" :key="index"></component>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -19,7 +35,19 @@
     import Layout from "@/layouts/Layout";
     export default {
         name: "Edit",
-        components: {Layout}
+        components: {Layout},
+        props:['form','column'],
+        methods: {
+            submit() {
+                this.$call.post(this.$route('login'), this.form)
+            },
+            __(value){
+                return value;
+            },
+            currentTabComponent: function(Component) {
+                return Component;
+            },
+        },
     }
 </script>
 

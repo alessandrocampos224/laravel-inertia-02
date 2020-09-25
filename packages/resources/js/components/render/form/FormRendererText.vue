@@ -1,7 +1,10 @@
 <template>
-    <fieldset class="form-label-group form-group position-relative has-icon-left">
+
+
+
+    <fieldset class="form-label-group form-group position-relative" :class="{'has-icon-left': column.icon}">
         <input v-bind="column.attributes" v-model="form[column.name]">
-            <div class="form-control-position">
+            <div class="form-control-position" v-if="column.icon">
                 <i class="feather icon-user"></i>
             </div>
             <label :for="column.attributes.id">{{ __(column.label)}}</label>

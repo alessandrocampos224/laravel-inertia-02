@@ -80,7 +80,11 @@ class AbstractController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return Call::render($this->edit);
+        if($this->model){
+            $this->results = $this->tenant->pivot($this->model)->editRecord($request,$id);
+        }
+
+        return Call::render($this->edit,$this->results);
     }
 
     /**

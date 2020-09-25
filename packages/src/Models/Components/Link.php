@@ -65,11 +65,7 @@ class Link extends AbstractField
             return $this->href(function ($model) use ($route) {
                 if(!$model)
                     return [];
-                return [
-                    'name' => sprintf('admin.%s.destroy', $route),
-                    'params' => $this->getUpdatesQueryParameters($model),
-                    'query' => $this->getUpdatesQueryParametersClean(),
-                ];
+                return $this->destroy_route_name($model);
             });
         }
         else{
@@ -92,11 +88,7 @@ class Link extends AbstractField
             return $this->href(function ($model) use ($route) {
                 if(!$model)
                     return [];
-                return [
-                    'name' => sprintf('admin.%s.edit', $route),
-                    'params' => $this->getUpdatesQueryParameters($model),
-                    'query' => $this->getUpdatesQueryParametersClean(),
-                ];
+                return $this->edit_route_name($model);
             });
         }
         else{
@@ -119,11 +111,7 @@ class Link extends AbstractField
             return $this->href(function ($model) use ($route) {
                 if(!$model)
                     return [];
-                return [
-                    'name' => sprintf('admin.%s.show', $route),
-                    'params' => $this->getUpdatesQueryParameters($model),
-                    'query' => $this->getUpdatesQueryParametersClean(),
-                ];
+                return $this->show_route_name($model);
             });
         }
         else{

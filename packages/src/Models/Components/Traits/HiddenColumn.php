@@ -64,8 +64,8 @@ trait HiddenColumn
      */
     public function hidden($key, $hidden=true): self
     {
-        if(in_array($key, $this->hidden)){
-            $this->hidden[$key] = $hidden;
+        if(in_array($key, array_keys($this->hidden))){
+           $this->hidden[$key] = $hidden;
         }
         return $this;
     }

@@ -10,17 +10,23 @@ namespace Call\Models\Components;
 use Call\Models\Components\Traits\AttributesColumn;
 use Call\Models\Components\Traits\HasComponents;
 use Call\Models\Components\Traits\HiddenColumn;
+use Call\Models\Components\Traits\Inputs\Hidden;
 use Call\Models\Components\Traits\OptionsColumn;
 
 class AbstractField
 {
-    use HiddenColumn, OptionsColumn, AttributesColumn, HasComponents;
+    use HiddenColumn, OptionsColumn, AttributesColumn, HasComponents, Hidden;
 
     protected $model;
     /**
      * @var
      */
     protected $type = 'text';
+
+    /**
+     * @var
+     */
+    protected $label;
 
     /**
      * @var
@@ -36,6 +42,11 @@ class AbstractField
      * @var string
      */
     protected $value;
+
+    /**
+     * @var string
+     */
+    protected $default;
 
     /**
      * @var string
@@ -89,6 +100,18 @@ class AbstractField
         return $this->setAttribute('text', $text);
     }
 
+
+    /**
+     * @param $text
+     *
+     * @return self
+     */
+    public function placeholder($placeholder): self
+    {
+        return $this->setAttribute('placeholder', $placeholder);
+    }
+
+
     /**
      * @param $label
      *
@@ -96,7 +119,9 @@ class AbstractField
      */
     public function label($label): self
     {
-        return $this->setAttribute('label', $label);
+        $this->label = $label;
+
+        return $this;
     }
 
     /**
@@ -156,7 +181,9 @@ class AbstractField
      */
     public function icon($icon): self
     {
-        return $this->setAttribute('icon', $icon);
+        $this->icon = $icon;
+
+        return $this;
     }
 
     /**

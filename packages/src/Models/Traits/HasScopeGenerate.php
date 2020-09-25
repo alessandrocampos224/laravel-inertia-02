@@ -36,12 +36,8 @@ trait HasScopeGenerate
     public function scopeEditRecord(Builder $builder, Request $request, $id)
     {
 
-        if ($this->getComponent()) {
+        return $this->edit($builder, $request,$id);
 
-            return app($this->getComponent(), compact('request','id'))->edit($builder);
-        }
-
-        return $builder->find($id);
     }
     /**
      * set auto filter
@@ -54,11 +50,8 @@ trait HasScopeGenerate
     public function scopeNewRecord(Builder $builder, Request $request)
     {
 
-        if ($this->getComponent()) {
-
-            return app($this->getComponent(), compact('request'))->NewRecord($builder);
-        }
-
-        return $builder;
+        return $this->NewRecord($builder,$request);
     }
+
+
 }

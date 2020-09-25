@@ -64,9 +64,9 @@ class User extends AbstractModel implements
     public function columns()
     {
        return [
-           Column::make('id'),
-           Column::make('name')->sortable(),
-           Column::make('email'),
+           Column::make('Id')->hidden_field(),
+           Column::make('Name')->sortable()->icon('icon-user'),
+           Column::make('Email'),
            Column::make('Action')->actions('users'),
        ];
     }

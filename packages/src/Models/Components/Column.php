@@ -15,6 +15,10 @@ class Column extends AbstractField
     {
         $this->text = $text;
         $this->name = $name ?? Str::snake(Str::lower($text));
+        $this->placeholder($text);
+        $this->label($text);
+        $this->id($this->name);
+        $this->class('form-control');
     }
     /**
      * @param  null  $text
@@ -31,8 +35,10 @@ class Column extends AbstractField
 
     public function toArray(){
 
+        $this->setAttribute('type',$this->type);
         return [
             'type'                   =>$this->type,
+            'label'                  =>$this->label,
             'text'                   =>$this->text,
             'name'                   =>$this->name,
             'icon'                   =>$this->icon,

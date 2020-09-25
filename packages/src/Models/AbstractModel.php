@@ -9,9 +9,12 @@ namespace Call\Models;
 use App\Models\Company;
 use App\Models\Tenant;
 use App\Models\User;
+use Call\Models\Components\Traits\WithParameters;
 use Call\Models\Traits\Attribute;
+use Call\Models\Traits\EditRecord;
 use Call\Models\Traits\Foreign;
 use Call\Models\Traits\HasScopeGenerate;
+use Call\Models\Traits\NewRecord;
 use Call\Models\Traits\Pagination;
 use Call\Models\Traits\Search;
 use Call\Models\Traits\Select;
@@ -24,7 +27,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class AbstractModel extends Model
 {
-    use UuidGenerate, Select, Search, Pagination,Sorting, Foreign, Attribute, Table, HasScopeGenerate, SoftDeletes;
+    use UuidGenerate, Select, Search, Pagination,
+        Sorting, Foreign,
+        Attribute, Table, HasScopeGenerate,
+        EditRecord, NewRecord, SoftDeletes, WithParameters;
 
     public function getSlugOptions()
     {

@@ -26,6 +26,8 @@ Route::middleware('auth')->prefix('admin')->group(function (){
         'create'=>'admin.users.create',
         'edit'=>'admin.users.edit',
         'show'=>'admin.users.show',
+        'store'=>'admin.users.store',
+        'update'=>'admin.users.update',
         'destroy'=>'admin.users.destroy',
     ]);
 });
